@@ -17,10 +17,10 @@ import {
   RoundResult,
 } from "./game.model";
 
-export function getNewGame(config: GameConfig): GameState {
+export function getNewGame(config: GameConfig, player?: Player): GameState {
   return {
     config,
-    players: [],
+    players: [player],
     deckNumberOfCards: 0,
     deck: [],
     roundsResults: [],
@@ -29,13 +29,13 @@ export function getNewGame(config: GameConfig): GameState {
   } as GameState;
 }
 
-function addPlayer(gameState: GameState, player: Player): GameState {
+export function addPlayer(gameState: GameState, player: Player): GameState {
   const newState = { ...gameState };
   newState.players.push(player);
   return newState;
 }
 
-function makeMove(
+export function makeMove(
   gameState: GameState,
   thrownCards: Card[],
   cardToTake: Card | null = null
@@ -57,7 +57,7 @@ function makeMove(
   return newState;
 }
 
-function yaniv(gameState: GameState): GameState {
+export function yaniv(gameState: GameState): GameState {
   const newState = { ...gameState };
   const currentPlayer = newState.currentPlayer as Player;
   const otherPlayers = getActivePlayers(newState).filter(
@@ -77,7 +77,9 @@ function yaniv(gameState: GameState): GameState {
   return newState;
 }
 
-function getRoundResultWinner(playersRoundScores: PlayerRoundScore[]): Player {
+export function getRoundResultWinner(
+  playersRoundScores: PlayerRoundScore[]
+): Player {
   const minDiffScore: number = playersRoundScores
     .map((score) => score.diff)
     .sort()[0];
@@ -87,7 +89,7 @@ function getRoundResultWinner(playersRoundScores: PlayerRoundScore[]): Player {
   return getRandomItemFromArray(winners);
 }
 
-function calculateRoundScores(
+export function calculateRoundScores(
   newState: GameState,
   currentPlayer: Player,
   asaf: boolean
@@ -108,7 +110,7 @@ function calculateRoundScores(
   });
 }
 
-function getMinScoreWinners(
+export function getMinScoreWinners(
   otherPlayers: Player[],
   currentPlayer: Player
 ): Player {
@@ -125,26 +127,26 @@ function getMinScoreWinners(
   return getRandomItemFromArray(winnerPlayers);
 }
 
-function getCardFromPile(gameState: GameState, cardToTake: Card): Card {
+export function getCardFromPile(gameState: GameState, cardToTake: Card): Card {
   return getThrownCards(gameState)?.find((card) => card === cardToTake) as Card;
 }
 
-function getCardFromDeck(gameState: GameState): Card {
+export function getCardFromDeck(gameState: GameState): Card {
   return getRandomItemFromArray(gameState.deck, true);
 }
 
-function setNextPlayer(gameState: GameState): void {
+export function setNextPlayer(gameState: GameState): void {
   gameState.currentPlayer = getNextPlayer(gameState);
 }
 
-function getShuffledDeckCards(): Card[] {
+export function getShuffledDeckCards(): Card[] {
   return getInitDeckCards()
     .map((value) => ({ value, sort: Math.random() }))
     .sort((a, b) => a.sort - b.sort)
     .map(({ value }) => value);
 }
 
-function getInitDeckCards(): Card[] {
+export function getInitDeckCards(): Card[] {
   const initDeck = [] as Card[];
   CardValuesMap.forEach((cardValue: CardValue, valueEnum: CardValueEnum) => {
     CardSymbolsMap.forEach(
@@ -182,14 +184,14 @@ function getInitDeckCards(): Card[] {
   return initDeck;
 }
 
-function getNextPlayer(gameState: GameState): Player {
+export function getNextPlayer(gameState: GameState): Player {
   const currentPlayer = gameState.currentPlayer as Player;
   const currentIndex = getActivePlayers(gameState).indexOf(currentPlayer);
   const nextIndex = (currentIndex + 1) % getActivePlayers(gameState).length;
   return getActivePlayers(gameState)[nextIndex];
 }
 
-export const startGame = (gameState: GameState) => {
+export function startGame(gameState: GameState) {
   const newState = { ...gameState };
   newState.status = GameStatus.running;
   newState.players.forEach((player) => {
@@ -198,7 +200,7 @@ export const startGame = (gameState: GameState) => {
   });
   const startingPlayer = getRandomItemFromArray(newState.players);
   return startNewRound(newState, startingPlayer);
-};
+}
 
 export function getRandomItemFromArray<T>(
   array: T[],
