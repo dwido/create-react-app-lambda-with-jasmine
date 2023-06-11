@@ -38,7 +38,7 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-            Edit <code>src/App.js</code> and save to dwido.
+            Edit <code>src/App.js</code> and save to hello everyone this is the new yaniv.
           </p>
           <LambdaDemo />
         </header>
