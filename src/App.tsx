@@ -3,6 +3,7 @@ import { useGameContext } from './store/ctx';
 import Button from './UI/Button';
 import CardComponent from "./UI/CardComponent";
 import {getInitDeckCards} from "./game/game.reducer";
+import TimerComponent from './timer/timer.controller';
 
 const App = () => {
 	const ctx = useGameContext();
@@ -12,6 +13,7 @@ const App = () => {
 
 	const deck = getInitDeckCards();
 	console.log("card: ", deck[0]);
+	const timer = 10;
 
 	return (
 		<div className='App'>
@@ -27,6 +29,7 @@ const App = () => {
 						card={card}
 					/>
 				))}
+				<TimerComponent timeLeft={timer}></TimerComponent>
 			</header>
 		</div>
 	);
