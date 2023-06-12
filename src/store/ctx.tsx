@@ -13,7 +13,7 @@ type Props = {
 };
 
 export const AwesomeContextProvider = ({ children }: Props) => {
-  const [gameState, setGameState] = React.useState({
+  const [gameState] = React.useState({
     game: getNewGame({
       yanivThreshold: 7,
       scoreLimit: 100,
