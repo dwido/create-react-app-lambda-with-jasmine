@@ -1,0 +1,46 @@
+.opponent-container {
+  width: 310px;
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.opponent-top {
+  justify-content: center;
+}
+
+.opponent-side {
+  gap: 65px;
+  margin-top: -310px;
+}
+
+.opponent-cards-container {
+  display: flex;
+  flex-direction: row;
+  height: 110px;
+  align-items: center;
+}
+
+.hand-score {
+  margin-top: 4px;
+  padding: 3px;
+  align-items: center;
+}
+
+.opponent-card {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.rotated-90 {
+  transform: rotate(90deg);
+}
+
+.rotated-180 {
+  transform: rotate(180deg);
+}
+
+.rotated-270 {
+  transform: rotate(270deg);
+}
