@@ -1,32 +1,31 @@
 import './App.css';
-import { useGameContext } from './store/ctx';
 import Button from './UI/Button';
-import CardComponent from "./UI/CardComponent";
-import {getInitDeckCards} from "./game/game.reducer";
+import Singleplayer from "./UI/Singleplayer";
+import {useState} from "react";
+import Multiplayer from "./UI/Multiplayer";
 
 const App = () => {
-	const ctx = useGameContext();
-	const onBtnClick = () => {
-		console.log('ctx', ctx);
+	const [showSingle, setShowSingle] = useState<boolean | null>(null);
+	const onSingleBtnClick = () => {
+		setShowSingle(true);
 	};
 
-	const deck = getInitDeckCards();
-	console.log("card: ", deck[0]);
+	const onMultiBtnClick = () => {
+		setShowSingle(false);
+	};
+
 
 	return (
 		<div className='App'>
 			<header className='App-header'>
-				<p>
-					Edit <code>src/App.js</code> and save to hello everyone this is the
-					new yaniv.
-				</p>
-				<Button onClick={onBtnClick} txt='This is my new custom button' />
-				<CardComponent card={deck[0]} />
-				{deck.map((card) => (
-					<CardComponent
-						card={card}
-					/>
-				))}
+				{ showSingle === null  ? <div>
+					<h1>Welcome to Yaniv game</h1>
+					<h3>Which way do you want to play? </h3>
+					<Button onClick={onSingleBtnClick} txt='Singleplayer' />
+					<Button onClick={onMultiBtnClick} txt='Multiplayer' />
+				</div> : null}
+				{ showSingle ? <Singleplayer /> : null }
+				{ showSingle === false ? <Multiplayer /> : null }
 			</header>
 		</div>
 	);
