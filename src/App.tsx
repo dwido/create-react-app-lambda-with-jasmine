@@ -1,7 +1,7 @@
 import './App.css';
 import { useGameContext } from './store/ctx';
 import Button from './UI/Button';
-import CardComponent from "./UI/CardComponent";
+import CardComponent from "./card/CardComponent";
 import {getInitDeckCards} from "./game/game.reducer";
 import TimerComponent from './timer/timer.controller';
 import AvatarComponent from "./avatar/avatar.controller";
