@@ -6,7 +6,7 @@ interface CardComponentProps {
   card: Card;
   isActive?: boolean;
   flipped?: boolean;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const CardComponent: React.FC<CardComponentProps> = ({

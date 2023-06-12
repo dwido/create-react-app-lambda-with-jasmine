@@ -6,6 +6,8 @@ import {getInitDeckCards} from "./game/game.reducer";
 import TimerComponent from './timer/timer.controller';
 import AvatarComponent from "./avatar/avatar.controller";
 import avatar1 from "./avatar/images/avatar1.png";
+import avatar3 from "./avatar/images/avatar3.png";
+import OpponentComponent from "./opponent/OpponentComponent";
 
 const App = () => {
 	const ctx = useGameContext();
@@ -26,6 +28,8 @@ const App = () => {
 		isComputerPlayer: false,
 	}
 
+	const opponent = { ...player, name: 'Alaa', img: avatar3}
+
 	return (
 		<div className='App'>
 			<header className='App-header'>
@@ -34,6 +38,7 @@ const App = () => {
 					new yaniv.
 				</p>
 				<Button onClick={onBtnClick} txt='This is my new custom button' />
+				<OpponentComponent player={opponent}></OpponentComponent>
 				<AvatarComponent player={player}></AvatarComponent>
 				<CardComponent card={deck[0]} />
 				{deck.map((card) => (
