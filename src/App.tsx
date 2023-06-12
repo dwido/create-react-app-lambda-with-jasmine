@@ -17,7 +17,7 @@ const App = () => {
 
 	return (
 		<div className='App'>
-			<header className='App-header'>
+			<header className='landing-page-header header'>
 				{ showSingle === null  ? <div>
 					<h1>Welcome to Yaniv game</h1>
 					<h3>Which way do you want to play? </h3>
