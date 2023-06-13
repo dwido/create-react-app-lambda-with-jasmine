@@ -7,15 +7,19 @@
   height: 40vmin;
 }
 
-.App-header {
-  background-color: #282c34;
+.landing-page-header{
   min-height: 100vh;
+}
+
+.header {
+  background-color: rgba(0,0,0,.32);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  background-image: radial-gradient(#89c189 30%, #408940 70%);
 }
 
 .App-link {
@@ -29,4 +33,26 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+h1 {
+  font-size: 1.8em;
+  font-weight: 900;
+  font-family: 'Philosopher', sans-serif;
+  color: darkslategray;
+}
+
+.button {
+  margin: 6px;
+  padding: 0.65em 2.6em;
+  border-radius: 20px;
+  color: darkslategray;
+  border: 1px solid darkslategray;
+  background: white;
+  transition: all 0.5s;
+}
+
+.button:hover {
+  background-color: darkslategray;
+  color: white;
 }
