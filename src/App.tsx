@@ -19,6 +19,8 @@ const App = () => {
 	console.log("card: ", deck[0]);
 	const timer = 10;
 
+	const { isOpen, handleClose, props } = dialog.useDialogController('dialogName');
+
 	const player = {
 		id: '1',
 		name: 'David',
@@ -29,6 +31,8 @@ const App = () => {
 	}
 
 	const opponent = { ...player, name: 'Alaa', img: avatar3}
+	const isDialogOpen = true
+	const closeDialog = () => {}
 
 	return (
 		<div className='App'>
@@ -37,6 +41,12 @@ const App = () => {
 					Edit <code>src/App.js</code> and save to hello everyone this is the
 					new yaniv.
 				</p>
+				{/*<Dialog*/}
+				{/*	isOpen={isDialogOpen}*/}
+				{/*	onClose={closeDialog}*/}
+				{/*	title="Dialog Title"*/}
+				{/*	content="This is the dialog content."*/}
+				{/*/>*/}
 				<Button onClick={onBtnClick} txt='This is my new custom button' />
 				<OpponentComponent player={opponent}></OpponentComponent>
 				<AvatarComponent player={player}></AvatarComponent>

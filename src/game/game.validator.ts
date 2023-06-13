@@ -14,6 +14,13 @@ export class GameValidator {
     return true;
   }
 
+  selectedCardsAreValid(selectedCards: Card[]): boolean {
+    if (selectedCards?.length) {
+      return (this.asStraightCards(selectedCards).length >= 3) || this.cardsHasSameValue(selectedCards);
+    }
+    return false;
+  }
+
   thrownCardsAreValid(selectedCards: Card[]): boolean {
     if (selectedCards?.length) {
       return (this.asStraightCards(selectedCards).length >= 3) || this.cardsHasSameValue(selectedCards);
